@@ -1,11 +1,11 @@
 syntax = "proto3";
 
+package meeting;
+
 import "google/protobuf/timestamp.proto";
 import "utils/paginator.proto";
 
-option go_package = "IDL/gen/meeting";
-
-package meeting;
+option go_package = "IDL/generated/go/meeting";
 
 enum MeetingStatus {
     CREATED = 0; // 모임 생성

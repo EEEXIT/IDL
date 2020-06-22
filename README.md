@@ -1,1 +1,2 @@
-protocol buffer files 
+IDL protocol buffer files
+
