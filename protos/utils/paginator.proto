@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option go_package = "IDL/gen/utils";
+
+package utils;
+
+message Paginator {
+    uint64 totalRecord = 1;
+    uint64 totalPage = 2;
+    uint64 perPage = 3;
+    uint64 page = 4;
+    uint64 prevPage = 5;
+    uint64 nextPage = 6;
+}
+
+message PaginatorOffset {
+    uint64 totalRecord = 1;
+    uint64 totalPage = 2;
+    uint64 offset = 3;
+    uint64 prevOffset = 4;
+    uint64 nextOffset = 5;
+}

@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+import "utils/paginator.proto";
+
+option go_package = "IDL/gen/meeting";
+
+package meeting;
+
+enum MeetingStatus {
+    CREATED = 0; // 모임 생성
+    WAIT = 1;    // 모임 대기
+    PLAY = 2;    // 모임중
+    END = 3;    // 모임 종료
+}
+
+service MeetingService {
+    //모임 생성
+    rpc CreateMeeting (ListMeetingRequest) returns (ListMeetingResponse) {}
+    //모임 수정
+    rpc UpdateMeeting (ListMeetingRequest) returns (ListMeetingResponse) {}
+    //모임 삭제
+    rpc DeleteMeeting (ListMeetingRequest) returns (ListMeetingResponse) {}
+    //모임 리스트
+    rpc ListMeeting (ListMeetingRequest) returns (ListMeetingResponse) {}
+    //모임 상세
+    rpc GetMeeting (MeetingRequest) returns (GetMeetingResponse) {}
+    //모임 가입 요청
+    rpc RequestJoinMeeting (MeetingRequest) returns (RequestJoinMeetingResponse) {}
+    //모임 가입 승인
+    rpc ApproveJoinMeeting (ApproveJoinMeetingRequest) returns (GetMeetingResponse) {}
+}
+
+message ListMeetingRequest {
+    uint64 page = 1;
+    uint64 perPage = 2;
+    google.protobuf.Timestamp startTime = 3;
+    google.protobuf.Timestamp endTime = 4;
+}
+
+message ListMeetingResponse {
+    repeated GetMeetingResponse meetings = 1;
+    utils.Paginator pageInfo = 2;
+}
+
+message MeetingRequest {
+    uint64 id = 1;
+}
+
+message RequestJoinMeetingResponse {
+    uint64 userID = 1;
+    uint64 chatKey = 2;
+}
+
+message ApproveJoinMeetingRequest {
+    uint64 meetingID = 1;
+    uint64 userID = 2;
+}
+
+message GetMeetingResponse {
+    uint64 id = 1;
+    string name = 2;
+    string category = 3;
+    string meetingTime = 4;
+    string location = 5;
+    MeetingStatus status = 6;
+}
+
+
