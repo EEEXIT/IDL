@@ -7,13 +7,17 @@
 package meeting
 
 import (
-	utils "IDL/generated/go/utils"
+	context "context"
 	proto "github.com/golang/protobuf/proto"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
+	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
 	sync "sync"
+	utils "utils"
 )
 
 const (
@@ -696,4 +700,314 @@ func file_meeting_meeting_proto_init() {
 	file_meeting_meeting_proto_rawDesc = nil
 	file_meeting_meeting_proto_goTypes = nil
 	file_meeting_meeting_proto_depIdxs = nil
+}
+
+// Reference imports to suppress errors if they are not otherwise used.
+var _ context.Context
+var _ grpc.ClientConnInterface
+
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the grpc package it is being compiled against.
+const _ = grpc.SupportPackageIsVersion6
+
+// MeetingServiceClient is the client API for MeetingService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type MeetingServiceClient interface {
+	//모임 생성
+	CreateMeeting(ctx context.Context, in *ListMeetingRequest, opts ...grpc.CallOption) (*ListMeetingResponse, error)
+	//모임 수정
+	UpdateMeeting(ctx context.Context, in *ListMeetingRequest, opts ...grpc.CallOption) (*ListMeetingResponse, error)
+	//모임 삭제
+	DeleteMeeting(ctx context.Context, in *ListMeetingRequest, opts ...grpc.CallOption) (*ListMeetingResponse, error)
+	//모임 리스트
+	ListMeeting(ctx context.Context, in *ListMeetingRequest, opts ...grpc.CallOption) (*ListMeetingResponse, error)
+	//모임 상세
+	GetMeeting(ctx context.Context, in *MeetingRequest, opts ...grpc.CallOption) (*GetMeetingResponse, error)
+	//모임 가입 요청
+	RequestJoinMeeting(ctx context.Context, in *MeetingRequest, opts ...grpc.CallOption) (*RequestJoinMeetingResponse, error)
+	//모임 가입 승인
+	ApproveJoinMeeting(ctx context.Context, in *ApproveJoinMeetingRequest, opts ...grpc.CallOption) (*GetMeetingResponse, error)
+}
+
+type meetingServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewMeetingServiceClient(cc grpc.ClientConnInterface) MeetingServiceClient {
+	return &meetingServiceClient{cc}
+}
+
+func (c *meetingServiceClient) CreateMeeting(ctx context.Context, in *ListMeetingRequest, opts ...grpc.CallOption) (*ListMeetingResponse, error) {
+	out := new(ListMeetingResponse)
+	err := c.cc.Invoke(ctx, "/meeting.MeetingService/CreateMeeting", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *meetingServiceClient) UpdateMeeting(ctx context.Context, in *ListMeetingRequest, opts ...grpc.CallOption) (*ListMeetingResponse, error) {
+	out := new(ListMeetingResponse)
+	err := c.cc.Invoke(ctx, "/meeting.MeetingService/UpdateMeeting", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *meetingServiceClient) DeleteMeeting(ctx context.Context, in *ListMeetingRequest, opts ...grpc.CallOption) (*ListMeetingResponse, error) {
+	out := new(ListMeetingResponse)
+	err := c.cc.Invoke(ctx, "/meeting.MeetingService/DeleteMeeting", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *meetingServiceClient) ListMeeting(ctx context.Context, in *ListMeetingRequest, opts ...grpc.CallOption) (*ListMeetingResponse, error) {
+	out := new(ListMeetingResponse)
+	err := c.cc.Invoke(ctx, "/meeting.MeetingService/ListMeeting", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *meetingServiceClient) GetMeeting(ctx context.Context, in *MeetingRequest, opts ...grpc.CallOption) (*GetMeetingResponse, error) {
+	out := new(GetMeetingResponse)
+	err := c.cc.Invoke(ctx, "/meeting.MeetingService/GetMeeting", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *meetingServiceClient) RequestJoinMeeting(ctx context.Context, in *MeetingRequest, opts ...grpc.CallOption) (*RequestJoinMeetingResponse, error) {
+	out := new(RequestJoinMeetingResponse)
+	err := c.cc.Invoke(ctx, "/meeting.MeetingService/RequestJoinMeeting", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *meetingServiceClient) ApproveJoinMeeting(ctx context.Context, in *ApproveJoinMeetingRequest, opts ...grpc.CallOption) (*GetMeetingResponse, error) {
+	out := new(GetMeetingResponse)
+	err := c.cc.Invoke(ctx, "/meeting.MeetingService/ApproveJoinMeeting", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// MeetingServiceServer is the server API for MeetingService service.
+type MeetingServiceServer interface {
+	//모임 생성
+	CreateMeeting(context.Context, *ListMeetingRequest) (*ListMeetingResponse, error)
+	//모임 수정
+	UpdateMeeting(context.Context, *ListMeetingRequest) (*ListMeetingResponse, error)
+	//모임 삭제
+	DeleteMeeting(context.Context, *ListMeetingRequest) (*ListMeetingResponse, error)
+	//모임 리스트
+	ListMeeting(context.Context, *ListMeetingRequest) (*ListMeetingResponse, error)
+	//모임 상세
+	GetMeeting(context.Context, *MeetingRequest) (*GetMeetingResponse, error)
+	//모임 가입 요청
+	RequestJoinMeeting(context.Context, *MeetingRequest) (*RequestJoinMeetingResponse, error)
+	//모임 가입 승인
+	ApproveJoinMeeting(context.Context, *ApproveJoinMeetingRequest) (*GetMeetingResponse, error)
+}
+
+// UnimplementedMeetingServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedMeetingServiceServer struct {
+}
+
+func (*UnimplementedMeetingServiceServer) CreateMeeting(context.Context, *ListMeetingRequest) (*ListMeetingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateMeeting not implemented")
+}
+func (*UnimplementedMeetingServiceServer) UpdateMeeting(context.Context, *ListMeetingRequest) (*ListMeetingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateMeeting not implemented")
+}
+func (*UnimplementedMeetingServiceServer) DeleteMeeting(context.Context, *ListMeetingRequest) (*ListMeetingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteMeeting not implemented")
+}
+func (*UnimplementedMeetingServiceServer) ListMeeting(context.Context, *ListMeetingRequest) (*ListMeetingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListMeeting not implemented")
+}
+func (*UnimplementedMeetingServiceServer) GetMeeting(context.Context, *MeetingRequest) (*GetMeetingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMeeting not implemented")
+}
+func (*UnimplementedMeetingServiceServer) RequestJoinMeeting(context.Context, *MeetingRequest) (*RequestJoinMeetingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RequestJoinMeeting not implemented")
+}
+func (*UnimplementedMeetingServiceServer) ApproveJoinMeeting(context.Context, *ApproveJoinMeetingRequest) (*GetMeetingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ApproveJoinMeeting not implemented")
+}
+
+func RegisterMeetingServiceServer(s *grpc.Server, srv MeetingServiceServer) {
+	s.RegisterService(&_MeetingService_serviceDesc, srv)
+}
+
+func _MeetingService_CreateMeeting_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListMeetingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MeetingServiceServer).CreateMeeting(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/meeting.MeetingService/CreateMeeting",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MeetingServiceServer).CreateMeeting(ctx, req.(*ListMeetingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MeetingService_UpdateMeeting_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListMeetingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MeetingServiceServer).UpdateMeeting(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/meeting.MeetingService/UpdateMeeting",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MeetingServiceServer).UpdateMeeting(ctx, req.(*ListMeetingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MeetingService_DeleteMeeting_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListMeetingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MeetingServiceServer).DeleteMeeting(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/meeting.MeetingService/DeleteMeeting",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MeetingServiceServer).DeleteMeeting(ctx, req.(*ListMeetingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MeetingService_ListMeeting_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListMeetingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MeetingServiceServer).ListMeeting(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/meeting.MeetingService/ListMeeting",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MeetingServiceServer).ListMeeting(ctx, req.(*ListMeetingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MeetingService_GetMeeting_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MeetingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MeetingServiceServer).GetMeeting(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/meeting.MeetingService/GetMeeting",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MeetingServiceServer).GetMeeting(ctx, req.(*MeetingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MeetingService_RequestJoinMeeting_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MeetingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MeetingServiceServer).RequestJoinMeeting(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/meeting.MeetingService/RequestJoinMeeting",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MeetingServiceServer).RequestJoinMeeting(ctx, req.(*MeetingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MeetingService_ApproveJoinMeeting_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ApproveJoinMeetingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MeetingServiceServer).ApproveJoinMeeting(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/meeting.MeetingService/ApproveJoinMeeting",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MeetingServiceServer).ApproveJoinMeeting(ctx, req.(*ApproveJoinMeetingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _MeetingService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "meeting.MeetingService",
+	HandlerType: (*MeetingServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "CreateMeeting",
+			Handler:    _MeetingService_CreateMeeting_Handler,
+		},
+		{
+			MethodName: "UpdateMeeting",
+			Handler:    _MeetingService_UpdateMeeting_Handler,
+		},
+		{
+			MethodName: "DeleteMeeting",
+			Handler:    _MeetingService_DeleteMeeting_Handler,
+		},
+		{
+			MethodName: "ListMeeting",
+			Handler:    _MeetingService_ListMeeting_Handler,
+		},
+		{
+			MethodName: "GetMeeting",
+			Handler:    _MeetingService_GetMeeting_Handler,
+		},
+		{
+			MethodName: "RequestJoinMeeting",
+			Handler:    _MeetingService_RequestJoinMeeting_Handler,
+		},
+		{
+			MethodName: "ApproveJoinMeeting",
+			Handler:    _MeetingService_ApproveJoinMeeting_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "meeting/meeting.proto",
 }

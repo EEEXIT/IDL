@@ -7,8 +7,12 @@
 package auth
 
 import (
+	context "context"
 	proto "github.com/golang/protobuf/proto"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
+	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -491,9 +495,8 @@ var file_meeting_auth_proto_rawDesc = []byte{
 	0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x12, 0x17, 0x2e, 0x61, 0x75, 0x74, 0x68, 0x2e, 0x47, 0x65,
 	0x74, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
 	0x18, 0x2e, 0x61, 0x75, 0x74, 0x68, 0x2e, 0x47, 0x65, 0x74, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c,
-	0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x42, 0x17, 0x5a, 0x15, 0x49,
-	0x44, 0x4c, 0x2f, 0x67, 0x65, 0x6e, 0x65, 0x72, 0x61, 0x74, 0x65, 0x64, 0x2f, 0x67, 0x6f, 0x2f,
-	0x61, 0x75, 0x74, 0x68, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x62, 0x06, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x33,
 }
 
 var (
@@ -645,4 +648,200 @@ func file_meeting_auth_proto_init() {
 	file_meeting_auth_proto_rawDesc = nil
 	file_meeting_auth_proto_goTypes = nil
 	file_meeting_auth_proto_depIdxs = nil
+}
+
+// Reference imports to suppress errors if they are not otherwise used.
+var _ context.Context
+var _ grpc.ClientConnInterface
+
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the grpc package it is being compiled against.
+const _ = grpc.SupportPackageIsVersion6
+
+// AuthServiceClient is the client API for AuthService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type AuthServiceClient interface {
+	// State 요청
+	GetState(ctx context.Context, in *GetStateRequest, opts ...grpc.CallOption) (*GetStateResponse, error)
+	// AccessToken 요청
+	GetAccessToken(ctx context.Context, in *GetAccessTokenRequest, opts ...grpc.CallOption) (*GetAccessTokenResponse, error)
+	// refreshToken 요청
+	RefreshToken(ctx context.Context, in *RefreshTokenRequest, opts ...grpc.CallOption) (*GetAccessTokenResponse, error)
+	// 로그인 정보 요청
+	GetProfile(ctx context.Context, in *GetProfileRequest, opts ...grpc.CallOption) (*GetProfileResponse, error)
+}
+
+type authServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewAuthServiceClient(cc grpc.ClientConnInterface) AuthServiceClient {
+	return &authServiceClient{cc}
+}
+
+func (c *authServiceClient) GetState(ctx context.Context, in *GetStateRequest, opts ...grpc.CallOption) (*GetStateResponse, error) {
+	out := new(GetStateResponse)
+	err := c.cc.Invoke(ctx, "/auth.AuthService/GetState", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authServiceClient) GetAccessToken(ctx context.Context, in *GetAccessTokenRequest, opts ...grpc.CallOption) (*GetAccessTokenResponse, error) {
+	out := new(GetAccessTokenResponse)
+	err := c.cc.Invoke(ctx, "/auth.AuthService/GetAccessToken", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authServiceClient) RefreshToken(ctx context.Context, in *RefreshTokenRequest, opts ...grpc.CallOption) (*GetAccessTokenResponse, error) {
+	out := new(GetAccessTokenResponse)
+	err := c.cc.Invoke(ctx, "/auth.AuthService/RefreshToken", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authServiceClient) GetProfile(ctx context.Context, in *GetProfileRequest, opts ...grpc.CallOption) (*GetProfileResponse, error) {
+	out := new(GetProfileResponse)
+	err := c.cc.Invoke(ctx, "/auth.AuthService/GetProfile", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// AuthServiceServer is the server API for AuthService service.
+type AuthServiceServer interface {
+	// State 요청
+	GetState(context.Context, *GetStateRequest) (*GetStateResponse, error)
+	// AccessToken 요청
+	GetAccessToken(context.Context, *GetAccessTokenRequest) (*GetAccessTokenResponse, error)
+	// refreshToken 요청
+	RefreshToken(context.Context, *RefreshTokenRequest) (*GetAccessTokenResponse, error)
+	// 로그인 정보 요청
+	GetProfile(context.Context, *GetProfileRequest) (*GetProfileResponse, error)
+}
+
+// UnimplementedAuthServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedAuthServiceServer struct {
+}
+
+func (*UnimplementedAuthServiceServer) GetState(context.Context, *GetStateRequest) (*GetStateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetState not implemented")
+}
+func (*UnimplementedAuthServiceServer) GetAccessToken(context.Context, *GetAccessTokenRequest) (*GetAccessTokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAccessToken not implemented")
+}
+func (*UnimplementedAuthServiceServer) RefreshToken(context.Context, *RefreshTokenRequest) (*GetAccessTokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RefreshToken not implemented")
+}
+func (*UnimplementedAuthServiceServer) GetProfile(context.Context, *GetProfileRequest) (*GetProfileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProfile not implemented")
+}
+
+func RegisterAuthServiceServer(s *grpc.Server, srv AuthServiceServer) {
+	s.RegisterService(&_AuthService_serviceDesc, srv)
+}
+
+func _AuthService_GetState_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetStateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).GetState(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/auth.AuthService/GetState",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).GetState(ctx, req.(*GetStateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthService_GetAccessToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAccessTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).GetAccessToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/auth.AuthService/GetAccessToken",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).GetAccessToken(ctx, req.(*GetAccessTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthService_RefreshToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RefreshTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).RefreshToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/auth.AuthService/RefreshToken",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).RefreshToken(ctx, req.(*RefreshTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthService_GetProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetProfileRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).GetProfile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/auth.AuthService/GetProfile",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).GetProfile(ctx, req.(*GetProfileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _AuthService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "auth.AuthService",
+	HandlerType: (*AuthServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetState",
+			Handler:    _AuthService_GetState_Handler,
+		},
+		{
+			MethodName: "GetAccessToken",
+			Handler:    _AuthService_GetAccessToken_Handler,
+		},
+		{
+			MethodName: "RefreshToken",
+			Handler:    _AuthService_RefreshToken_Handler,
+		},
+		{
+			MethodName: "GetProfile",
+			Handler:    _AuthService_GetProfile_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "meeting/auth.proto",
 }
