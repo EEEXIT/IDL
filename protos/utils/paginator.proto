@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package utils;
 
-option go_package = "IDL/generated/go/utils";
+option go_package = "github.com/EEEXIT/IDL/generated/go/utils";
 
 message Paginator {
     uint64 totalRecord = 1;
