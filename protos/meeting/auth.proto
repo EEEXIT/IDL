@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package auth;
+package meeting;
 
 import "google/protobuf/timestamp.proto";
 
-option go_package = "github.com/EEEXIT/IDL/generated/go/auth";
+option go_package = "github.com/EEEXIT/IDL/generated/go/meeting";
 
 service AuthService {
     // State 요청
