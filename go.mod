@@ -1,4 +1,4 @@
-module IDL
+module github.com/EEEXIT/IDL
 
 go 1.13
 

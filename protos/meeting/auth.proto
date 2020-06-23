@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package auth;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "IDL/generated/go/auth";
+
+service AuthService {
+    // State 요청
+    rpc GetState (GetStateRequest) returns (GetStateResponse) {}
+    // AccessToken 요청
+    rpc GetAccessToken (GetAccessTokenRequest) returns (GetAccessTokenResponse) {}
+    // refreshToken 요청
+    rpc RefreshToken (RefreshTokenRequest) returns (GetAccessTokenResponse) {}
+    // 로그인 정보 요청
+    rpc GetProfile (GetProfileRequest) returns (GetProfileResponse) {}
+}
+
+message GetStateRequest {
+    string clientID = 1;
+    string redirectURI = 2;
+}
+
+message GetStateResponse {
+    string State = 1;
+}
+
+message GetAccessTokenRequest {
+    string code = 1;
+    string state = 2;
+}
+
+message GetAccessTokenResponse {
+    string accessToken = 1;
+    string tokenType = 2;
+    string refreshToken = 3;
+    google.protobuf.Timestamp expiry = 4;
+}
+
+message RefreshTokenRequest {
+    string refreshToken = 1;
+}
+
+message GetProfileRequest {
+    string accessToken = 1;
+}
+
+message GetProfileResponse {
+    string oauthKey = 1;
+    string nickname = 2;
+    string sex = 3;
+    string birthday = 4;
+    string email = 5;
+}
+
+
