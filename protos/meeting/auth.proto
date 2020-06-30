@@ -3,18 +3,39 @@ syntax = "proto3";
 package meeting;
 
 import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
 
 option go_package = "github.com/EEEXIT/IDL/generated/go/meeting";
 
 service AuthService {
     // State 요청
-    rpc GetState (GetStateRequest) returns (GetStateResponse) {}
+    rpc GetState (GetStateRequest) returns (GetStateResponse) {
+        option (google.api.http) = {
+          post: "/v1/auth/state"
+          body: "*"
+        };
+    }
     // AccessToken 요청
-    rpc GetAccessToken (GetAccessTokenRequest) returns (GetAccessTokenResponse) {}
+    rpc GetAccessToken (GetAccessTokenRequest) returns (GetAccessTokenResponse) {
+        option (google.api.http) = {
+          post: "/v1/auth/token"
+          body: "*"
+        };
+    }
     // refreshToken 요청
-    rpc RefreshToken (RefreshTokenRequest) returns (GetAccessTokenResponse) {}
+    rpc RefreshToken (RefreshTokenRequest) returns (GetAccessTokenResponse) {
+        option (google.api.http) = {
+          post: "/v1/auth/refresh"
+          body: "*"
+        };
+    }
     // 로그인 정보 요청
-    rpc GetProfile (GetProfileRequest) returns (GetProfileResponse) {}
+    rpc GetProfile (GetProfileRequest) returns (GetProfileResponse) {
+        option (google.api.http) = {
+          post: "/v1/auth/profile"
+          body: "*"
+        };
+    }
 }
 
 message GetStateRequest {

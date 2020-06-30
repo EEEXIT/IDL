@@ -3,6 +3,7 @@ syntax = "proto3";
 package meeting;
 
 import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
 import "utils/paginator.proto";
 
 option go_package = "github.com/EEEXIT/IDL/generated/go/meeting";
@@ -16,19 +17,51 @@ enum MeetingStatus {
 
 service MeetingService {
     //모임 생성
-    rpc CreateMeeting (ListMeetingRequest) returns (ListMeetingResponse) {}
+    rpc CreateMeeting (MeetingRequest) returns (ListMeetingResponse) {
+        option (google.api.http) = {
+            post: "/v1/meeting"
+            body: "*"
+        };
+    }
     //모임 수정
-    rpc UpdateMeeting (ListMeetingRequest) returns (ListMeetingResponse) {}
+    rpc UpdateMeeting (MeetingRequest) returns (MeetingRequest) {
+        option (google.api.http) = {
+            put: "/v1/meeting/{id}"
+            body: "*"
+        };
+    }
     //모임 삭제
-    rpc DeleteMeeting (ListMeetingRequest) returns (ListMeetingResponse) {}
+    rpc DeleteMeeting (MeetingRequest) returns (MeetingRequest) {
+        option (google.api.http) = {
+            delete: "/v1/meeting/{id}"
+            body: "*"
+        };
+    }
     //모임 리스트
-    rpc ListMeeting (ListMeetingRequest) returns (ListMeetingResponse) {}
+    rpc ListMeeting (ListMeetingRequest) returns (ListMeetingResponse) {
+        option (google.api.http) = {
+            get: "/v1/meeting"
+        };
+    }
     //모임 상세
-    rpc GetMeeting (MeetingRequest) returns (GetMeetingResponse) {}
+    rpc GetMeeting (MeetingRequest) returns (GetMeetingResponse) {
+        option (google.api.http) = {
+            get: "/v1/meeting/{id}"
+        };
+    }
     //모임 가입 요청
-    rpc RequestJoinMeeting (MeetingRequest) returns (RequestJoinMeetingResponse) {}
+    rpc RequestJoinMeeting (MeetingRequest) returns (RequestJoinMeetingResponse) {
+        option (google.api.http) = {
+            get: "/v1/meeting/request"
+        };
+    }
     //모임 가입 승인
-    rpc ApproveJoinMeeting (ApproveJoinMeetingRequest) returns (GetMeetingResponse) {}
+    rpc ApproveJoinMeeting (ApproveJoinMeetingRequest) returns (GetMeetingResponse) {
+        option (google.api.http) = {
+            post: "/v1/meeting/approve"
+            body: "*"
+        };
+    }
 }
 
 message ListMeetingRequest {
