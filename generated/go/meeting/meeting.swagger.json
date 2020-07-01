@@ -1,0 +1,498 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "meeting/meeting.proto",
+    "version": "version not set"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/meeting": {
+      "get": {
+        "summary": "모임 리스트",
+        "operationId": "MeetingService_ListMeeting",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/meetingListMeetingResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "startTime",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "endTime",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          }
+        ],
+        "tags": [
+          "MeetingService"
+        ]
+      },
+      "post": {
+        "summary": "모임 생성",
+        "operationId": "MeetingService_CreateMeeting",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/meetingMeetingResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/meetingCreateMeetingRequest"
+            }
+          }
+        ],
+        "tags": [
+          "MeetingService"
+        ]
+      }
+    },
+    "/v1/meeting/approve": {
+      "post": {
+        "summary": "모임 가입 승인",
+        "operationId": "MeetingService_ApproveJoinMeeting",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/meetingGetMeetingResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/meetingApproveJoinMeetingRequest"
+            }
+          }
+        ],
+        "tags": [
+          "MeetingService"
+        ]
+      }
+    },
+    "/v1/meeting/me": {
+      "get": {
+        "summary": "모임 가입 요청",
+        "operationId": "MeetingService_MyMeeting",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/meetingMeetingRequest"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          }
+        ],
+        "tags": [
+          "MeetingService"
+        ]
+      }
+    },
+    "/v1/meeting/request": {
+      "get": {
+        "summary": "모임 가입 요청",
+        "operationId": "MeetingService_RequestJoinMeeting",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/meetingRequestJoinMeetingResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          }
+        ],
+        "tags": [
+          "MeetingService"
+        ]
+      }
+    },
+    "/v1/meeting/{id}": {
+      "get": {
+        "summary": "모임 상세",
+        "operationId": "MeetingService_GetMeeting",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/meetingGetMeetingResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uint64"
+          }
+        ],
+        "tags": [
+          "MeetingService"
+        ]
+      },
+      "delete": {
+        "summary": "모임 삭제",
+        "operationId": "MeetingService_DeleteMeeting",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/meetingMeetingResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/meetingMeetingRequest"
+            }
+          }
+        ],
+        "tags": [
+          "MeetingService"
+        ]
+      },
+      "put": {
+        "summary": "모임 수정",
+        "operationId": "MeetingService_UpdateMeeting",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/meetingMeetingResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/meetingMeetingRequest"
+            }
+          }
+        ],
+        "tags": [
+          "MeetingService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "meetingApproveJoinMeetingRequest": {
+      "type": "object",
+      "properties": {
+        "meetingID": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "userID": {
+          "type": "string",
+          "format": "uint64"
+        }
+      }
+    },
+    "meetingCreateMeetingRequest": {
+      "type": "object",
+      "properties": {
+        "LeaderID": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "MeetingName": {
+          "type": "string"
+        },
+        "MeetingDescription": {
+          "type": "string"
+        },
+        "MeetingCount": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "MinLevel": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "MaxLevel": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "MeetingLocation": {
+          "type": "string"
+        },
+        "CategoryID": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "MeetingDate": {
+          "type": "string",
+          "format": "uint64"
+        }
+      }
+    },
+    "meetingGetMeetingResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "meetingTime": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/meetingMeetingStatus"
+        }
+      }
+    },
+    "meetingListMeetingResponse": {
+      "type": "object",
+      "properties": {
+        "meetings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/meetingGetMeetingResponse"
+          }
+        },
+        "pageInfo": {
+          "$ref": "#/definitions/utilsPaginator"
+        }
+      }
+    },
+    "meetingMeetingRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64"
+        }
+      }
+    },
+    "meetingMeetingResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64"
+        }
+      }
+    },
+    "meetingMeetingStatus": {
+      "type": "string",
+      "enum": [
+        "CREATED",
+        "WAIT",
+        "PLAY",
+        "END"
+      ],
+      "default": "CREATED"
+    },
+    "meetingRequestJoinMeetingResponse": {
+      "type": "object",
+      "properties": {
+        "userID": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "chatKey": {
+          "type": "string",
+          "format": "uint64"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "runtimeError": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string"
+        },
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "utilsPaginator": {
+      "type": "object",
+      "properties": {
+        "totalRecord": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "totalPage": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "perPage": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "page": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "prevPage": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "nextPage": {
+          "type": "string",
+          "format": "uint64"
+        }
+      }
+    }
+  }
+}

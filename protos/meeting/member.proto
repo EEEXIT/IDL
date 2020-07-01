@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package meeting;
+
+option go_package = "github.com/EEEXIT/IDL/generated/go/meeting";
+
+service MemberService {
+
+}
