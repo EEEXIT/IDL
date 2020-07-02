@@ -227,7 +227,6 @@ type CreateMeetingRequest struct {
 }
 
 func (x *CreateMeetingRequest) Reset() {
-
 	*x = CreateMeetingRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_meeting_meeting_proto_msgTypes[2]

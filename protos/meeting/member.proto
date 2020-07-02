@@ -2,8 +2,49 @@ syntax = "proto3";
 
 package meeting;
 
+import "google/api/annotations.proto";
+import "utils/common.proto";
+
 option go_package = "github.com/EEEXIT/IDL/generated/go/meeting";
 
 service MemberService {
 
+  // 회사 이메일 코드 전송
+  rpc SendCode (SendCodeRequest) returns (utils.Response) {
+    option (google.api.http) = {
+      post: "/v1/member/company/code"
+      body: "*"
+    };
+  }
+
+  // 회사 코드 인증
+  rpc VerifyCode (VerifyCodeRequest) returns (utils.Response) {
+    option (google.api.http) = {
+      get: "/v1/member/company/code/{code}"
+    };
+  }
+
+  // 유저 정보 추가 입력
+  rpc UpdateMemberDetailInfo (MemberDetailInfo) returns (utils.Response) {
+    option (google.api.http) = {
+      post: "/v1/member/detail"
+      body: "*"
+    };
+  }
 }
+
+message SendCodeRequest {
+  string memberId = 1;
+  string email = 2;
+}
+
+
+message VerifyCodeRequest {
+  string code = 1;
+}
+
+message MemberDetailInfo {
+  string memberId = 1;
+  string email = 2;
+}
+

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package utils;
+
+option go_package = "github.com/EEEXIT/IDL/generated/go/utils";
+
+message Response {
+    uint64 resultCode = 1;
+    uint64 message = 2;
+}
