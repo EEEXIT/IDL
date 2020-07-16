@@ -120,6 +120,117 @@ class ListMeetingResponse extends $pb.GeneratedMessage {
   $1.Paginator ensurePageInfo() => $_ensure(1);
 }
 
+class CreateMeetingRequest extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('CreateMeetingRequest', package: const $pb.PackageName('meeting'), createEmptyInstance: create)
+    ..a<$fixnum.Int64>(1, 'LeaderID', $pb.PbFieldType.OU6, protoName: 'LeaderID', defaultOrMaker: $fixnum.Int64.ZERO)
+    ..aOS(2, 'MeetingName', protoName: 'MeetingName')
+    ..aOS(3, 'MeetingDescription', protoName: 'MeetingDescription')
+    ..a<$core.int>(4, 'MeetingCount', $pb.PbFieldType.OU3, protoName: 'MeetingCount')
+    ..a<$core.int>(5, 'MinLevel', $pb.PbFieldType.OU3, protoName: 'MinLevel')
+    ..a<$core.int>(6, 'MaxLevel', $pb.PbFieldType.OU3, protoName: 'MaxLevel')
+    ..aOS(7, 'MeetingLocation', protoName: 'MeetingLocation')
+    ..a<$fixnum.Int64>(8, 'CategoryID', $pb.PbFieldType.OU6, protoName: 'CategoryID', defaultOrMaker: $fixnum.Int64.ZERO)
+    ..a<$fixnum.Int64>(9, 'MeetingDate', $pb.PbFieldType.OU6, protoName: 'MeetingDate', defaultOrMaker: $fixnum.Int64.ZERO)
+    ..hasRequiredFields = false
+  ;
+
+  CreateMeetingRequest._() : super();
+  factory CreateMeetingRequest() => create();
+  factory CreateMeetingRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory CreateMeetingRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  CreateMeetingRequest clone() => CreateMeetingRequest()..mergeFromMessage(this);
+  CreateMeetingRequest copyWith(void Function(CreateMeetingRequest) updates) => super.copyWith((message) => updates(message as CreateMeetingRequest));
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static CreateMeetingRequest create() => CreateMeetingRequest._();
+  CreateMeetingRequest createEmptyInstance() => create();
+  static $pb.PbList<CreateMeetingRequest> createRepeated() => $pb.PbList<CreateMeetingRequest>();
+  @$core.pragma('dart2js:noInline')
+  static CreateMeetingRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<CreateMeetingRequest>(create);
+  static CreateMeetingRequest _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $fixnum.Int64 get leaderID => $_getI64(0);
+  @$pb.TagNumber(1)
+  set leaderID($fixnum.Int64 v) { $_setInt64(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasLeaderID() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearLeaderID() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get meetingName => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set meetingName($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasMeetingName() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearMeetingName() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get meetingDescription => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set meetingDescription($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasMeetingDescription() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearMeetingDescription() => clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.int get meetingCount => $_getIZ(3);
+  @$pb.TagNumber(4)
+  set meetingCount($core.int v) { $_setUnsignedInt32(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasMeetingCount() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearMeetingCount() => clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.int get minLevel => $_getIZ(4);
+  @$pb.TagNumber(5)
+  set minLevel($core.int v) { $_setUnsignedInt32(4, v); }
+  @$pb.TagNumber(5)
+  $core.bool hasMinLevel() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearMinLevel() => clearField(5);
+
+  @$pb.TagNumber(6)
+  $core.int get maxLevel => $_getIZ(5);
+  @$pb.TagNumber(6)
+  set maxLevel($core.int v) { $_setUnsignedInt32(5, v); }
+  @$pb.TagNumber(6)
+  $core.bool hasMaxLevel() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearMaxLevel() => clearField(6);
+
+  @$pb.TagNumber(7)
+  $core.String get meetingLocation => $_getSZ(6);
+  @$pb.TagNumber(7)
+  set meetingLocation($core.String v) { $_setString(6, v); }
+  @$pb.TagNumber(7)
+  $core.bool hasMeetingLocation() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearMeetingLocation() => clearField(7);
+
+  @$pb.TagNumber(8)
+  $fixnum.Int64 get categoryID => $_getI64(7);
+  @$pb.TagNumber(8)
+  set categoryID($fixnum.Int64 v) { $_setInt64(7, v); }
+  @$pb.TagNumber(8)
+  $core.bool hasCategoryID() => $_has(7);
+  @$pb.TagNumber(8)
+  void clearCategoryID() => clearField(8);
+
+  @$pb.TagNumber(9)
+  $fixnum.Int64 get meetingDate => $_getI64(8);
+  @$pb.TagNumber(9)
+  set meetingDate($fixnum.Int64 v) { $_setInt64(8, v); }
+  @$pb.TagNumber(9)
+  $core.bool hasMeetingDate() => $_has(8);
+  @$pb.TagNumber(9)
+  void clearMeetingDate() => clearField(9);
+}
+
 class MeetingRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('MeetingRequest', package: const $pb.PackageName('meeting'), createEmptyInstance: create)
     ..a<$fixnum.Int64>(1, 'id', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
@@ -140,6 +251,37 @@ class MeetingRequest extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static MeetingRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<MeetingRequest>(create);
   static MeetingRequest _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $fixnum.Int64 get id => $_getI64(0);
+  @$pb.TagNumber(1)
+  set id($fixnum.Int64 v) { $_setInt64(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+}
+
+class MeetingResponse extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('MeetingResponse', package: const $pb.PackageName('meeting'), createEmptyInstance: create)
+    ..a<$fixnum.Int64>(1, 'id', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
+    ..hasRequiredFields = false
+  ;
+
+  MeetingResponse._() : super();
+  factory MeetingResponse() => create();
+  factory MeetingResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory MeetingResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  MeetingResponse clone() => MeetingResponse()..mergeFromMessage(this);
+  MeetingResponse copyWith(void Function(MeetingResponse) updates) => super.copyWith((message) => updates(message as MeetingResponse));
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static MeetingResponse create() => MeetingResponse._();
+  MeetingResponse createEmptyInstance() => create();
+  static $pb.PbList<MeetingResponse> createRepeated() => $pb.PbList<MeetingResponse>();
+  @$core.pragma('dart2js:noInline')
+  static MeetingResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<MeetingResponse>(create);
+  static MeetingResponse _defaultInstance;
 
   @$pb.TagNumber(1)
   $fixnum.Int64 get id => $_getI64(0);
@@ -318,17 +460,17 @@ class MeetingServiceApi {
   $pb.RpcClient _client;
   MeetingServiceApi(this._client);
 
-  $async.Future<ListMeetingResponse> createMeeting($pb.ClientContext ctx, ListMeetingRequest request) {
-    var emptyResponse = ListMeetingResponse();
-    return _client.invoke<ListMeetingResponse>(ctx, 'MeetingService', 'CreateMeeting', request, emptyResponse);
+  $async.Future<MeetingResponse> createMeeting($pb.ClientContext ctx, CreateMeetingRequest request) {
+    var emptyResponse = MeetingResponse();
+    return _client.invoke<MeetingResponse>(ctx, 'MeetingService', 'CreateMeeting', request, emptyResponse);
   }
-  $async.Future<ListMeetingResponse> updateMeeting($pb.ClientContext ctx, ListMeetingRequest request) {
-    var emptyResponse = ListMeetingResponse();
-    return _client.invoke<ListMeetingResponse>(ctx, 'MeetingService', 'UpdateMeeting', request, emptyResponse);
+  $async.Future<MeetingResponse> updateMeeting($pb.ClientContext ctx, MeetingRequest request) {
+    var emptyResponse = MeetingResponse();
+    return _client.invoke<MeetingResponse>(ctx, 'MeetingService', 'UpdateMeeting', request, emptyResponse);
   }
-  $async.Future<ListMeetingResponse> deleteMeeting($pb.ClientContext ctx, ListMeetingRequest request) {
-    var emptyResponse = ListMeetingResponse();
-    return _client.invoke<ListMeetingResponse>(ctx, 'MeetingService', 'DeleteMeeting', request, emptyResponse);
+  $async.Future<MeetingResponse> deleteMeeting($pb.ClientContext ctx, MeetingRequest request) {
+    var emptyResponse = MeetingResponse();
+    return _client.invoke<MeetingResponse>(ctx, 'MeetingService', 'DeleteMeeting', request, emptyResponse);
   }
   $async.Future<ListMeetingResponse> listMeeting($pb.ClientContext ctx, ListMeetingRequest request) {
     var emptyResponse = ListMeetingResponse();
@@ -345,6 +487,10 @@ class MeetingServiceApi {
   $async.Future<GetMeetingResponse> approveJoinMeeting($pb.ClientContext ctx, ApproveJoinMeetingRequest request) {
     var emptyResponse = GetMeetingResponse();
     return _client.invoke<GetMeetingResponse>(ctx, 'MeetingService', 'ApproveJoinMeeting', request, emptyResponse);
+  }
+  $async.Future<MeetingRequest> myMeeting($pb.ClientContext ctx, MeetingRequest request) {
+    var emptyResponse = MeetingRequest();
+    return _client.invoke<MeetingRequest>(ctx, 'MeetingService', 'MyMeeting', request, emptyResponse);
   }
 }
 

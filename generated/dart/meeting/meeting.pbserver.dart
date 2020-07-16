@@ -16,23 +16,25 @@ import 'meeting.pbjson.dart';
 export 'meeting.pb.dart';
 
 abstract class MeetingServiceBase extends $pb.GeneratedService {
-  $async.Future<$2.ListMeetingResponse> createMeeting($pb.ServerContext ctx, $2.ListMeetingRequest request);
-  $async.Future<$2.ListMeetingResponse> updateMeeting($pb.ServerContext ctx, $2.ListMeetingRequest request);
-  $async.Future<$2.ListMeetingResponse> deleteMeeting($pb.ServerContext ctx, $2.ListMeetingRequest request);
+  $async.Future<$2.MeetingResponse> createMeeting($pb.ServerContext ctx, $2.CreateMeetingRequest request);
+  $async.Future<$2.MeetingResponse> updateMeeting($pb.ServerContext ctx, $2.MeetingRequest request);
+  $async.Future<$2.MeetingResponse> deleteMeeting($pb.ServerContext ctx, $2.MeetingRequest request);
   $async.Future<$2.ListMeetingResponse> listMeeting($pb.ServerContext ctx, $2.ListMeetingRequest request);
   $async.Future<$2.GetMeetingResponse> getMeeting($pb.ServerContext ctx, $2.MeetingRequest request);
   $async.Future<$2.RequestJoinMeetingResponse> requestJoinMeeting($pb.ServerContext ctx, $2.MeetingRequest request);
   $async.Future<$2.GetMeetingResponse> approveJoinMeeting($pb.ServerContext ctx, $2.ApproveJoinMeetingRequest request);
+  $async.Future<$2.MeetingRequest> myMeeting($pb.ServerContext ctx, $2.MeetingRequest request);
 
   $pb.GeneratedMessage createRequest($core.String method) {
     switch (method) {
-      case 'CreateMeeting': return $2.ListMeetingRequest();
-      case 'UpdateMeeting': return $2.ListMeetingRequest();
-      case 'DeleteMeeting': return $2.ListMeetingRequest();
+      case 'CreateMeeting': return $2.CreateMeetingRequest();
+      case 'UpdateMeeting': return $2.MeetingRequest();
+      case 'DeleteMeeting': return $2.MeetingRequest();
       case 'ListMeeting': return $2.ListMeetingRequest();
       case 'GetMeeting': return $2.MeetingRequest();
       case 'RequestJoinMeeting': return $2.MeetingRequest();
       case 'ApproveJoinMeeting': return $2.ApproveJoinMeetingRequest();
+      case 'MyMeeting': return $2.MeetingRequest();
       default: throw $core.ArgumentError('Unknown method: $method');
     }
   }
@@ -46,6 +48,7 @@ abstract class MeetingServiceBase extends $pb.GeneratedService {
       case 'GetMeeting': return this.getMeeting(ctx, request);
       case 'RequestJoinMeeting': return this.requestJoinMeeting(ctx, request);
       case 'ApproveJoinMeeting': return this.approveJoinMeeting(ctx, request);
+      case 'MyMeeting': return this.myMeeting(ctx, request);
       default: throw $core.ArgumentError('Unknown method: $method');
     }
   }

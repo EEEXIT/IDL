@@ -36,8 +36,30 @@ const ListMeetingResponse$json = const {
   ],
 };
 
+const CreateMeetingRequest$json = const {
+  '1': 'CreateMeetingRequest',
+  '2': const [
+    const {'1': 'LeaderID', '3': 1, '4': 1, '5': 4, '10': 'LeaderID'},
+    const {'1': 'MeetingName', '3': 2, '4': 1, '5': 9, '10': 'MeetingName'},
+    const {'1': 'MeetingDescription', '3': 3, '4': 1, '5': 9, '10': 'MeetingDescription'},
+    const {'1': 'MeetingCount', '3': 4, '4': 1, '5': 13, '10': 'MeetingCount'},
+    const {'1': 'MinLevel', '3': 5, '4': 1, '5': 13, '10': 'MinLevel'},
+    const {'1': 'MaxLevel', '3': 6, '4': 1, '5': 13, '10': 'MaxLevel'},
+    const {'1': 'MeetingLocation', '3': 7, '4': 1, '5': 9, '10': 'MeetingLocation'},
+    const {'1': 'CategoryID', '3': 8, '4': 1, '5': 4, '10': 'CategoryID'},
+    const {'1': 'MeetingDate', '3': 9, '4': 1, '5': 4, '10': 'MeetingDate'},
+  ],
+};
+
 const MeetingRequest$json = const {
   '1': 'MeetingRequest',
+  '2': const [
+    const {'1': 'id', '3': 1, '4': 1, '5': 4, '10': 'id'},
+  ],
+};
+
+const MeetingResponse$json = const {
+  '1': 'MeetingResponse',
   '2': const [
     const {'1': 'id', '3': 1, '4': 1, '5': 4, '10': 'id'},
   ],
@@ -74,23 +96,26 @@ const GetMeetingResponse$json = const {
 const MeetingServiceBase$json = const {
   '1': 'MeetingService',
   '2': const [
-    const {'1': 'CreateMeeting', '2': '.meeting.ListMeetingRequest', '3': '.meeting.ListMeetingResponse', '4': const {}},
-    const {'1': 'UpdateMeeting', '2': '.meeting.ListMeetingRequest', '3': '.meeting.ListMeetingResponse', '4': const {}},
-    const {'1': 'DeleteMeeting', '2': '.meeting.ListMeetingRequest', '3': '.meeting.ListMeetingResponse', '4': const {}},
+    const {'1': 'CreateMeeting', '2': '.meeting.CreateMeetingRequest', '3': '.meeting.MeetingResponse', '4': const {}},
+    const {'1': 'UpdateMeeting', '2': '.meeting.MeetingRequest', '3': '.meeting.MeetingResponse', '4': const {}},
+    const {'1': 'DeleteMeeting', '2': '.meeting.MeetingRequest', '3': '.meeting.MeetingResponse', '4': const {}},
     const {'1': 'ListMeeting', '2': '.meeting.ListMeetingRequest', '3': '.meeting.ListMeetingResponse', '4': const {}},
     const {'1': 'GetMeeting', '2': '.meeting.MeetingRequest', '3': '.meeting.GetMeetingResponse', '4': const {}},
     const {'1': 'RequestJoinMeeting', '2': '.meeting.MeetingRequest', '3': '.meeting.RequestJoinMeetingResponse', '4': const {}},
     const {'1': 'ApproveJoinMeeting', '2': '.meeting.ApproveJoinMeetingRequest', '3': '.meeting.GetMeetingResponse', '4': const {}},
+    const {'1': 'MyMeeting', '2': '.meeting.MeetingRequest', '3': '.meeting.MeetingRequest', '4': const {}},
   ],
 };
 
 const MeetingServiceBase$messageJson = const {
+  '.meeting.CreateMeetingRequest': CreateMeetingRequest$json,
+  '.meeting.MeetingResponse': MeetingResponse$json,
+  '.meeting.MeetingRequest': MeetingRequest$json,
   '.meeting.ListMeetingRequest': ListMeetingRequest$json,
   '.google.protobuf.Timestamp': $0.Timestamp$json,
   '.meeting.ListMeetingResponse': ListMeetingResponse$json,
   '.meeting.GetMeetingResponse': GetMeetingResponse$json,
   '.utils.Paginator': $1.Paginator$json,
-  '.meeting.MeetingRequest': MeetingRequest$json,
   '.meeting.RequestJoinMeetingResponse': RequestJoinMeetingResponse$json,
   '.meeting.ApproveJoinMeetingRequest': ApproveJoinMeetingRequest$json,
 };
